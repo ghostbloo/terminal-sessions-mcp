@@ -450,7 +450,7 @@ export class PersistentSessionServer extends EventEmitter {
       throw new Error(`Session ${id} already exists`);
     }
 
-    const shell = options.shell || (process.platform === 'win32' ? 'wsl.exe' : '/bin/bash');
+    const shell = options.shell || process.env.SHELL || (process.platform === 'win32' ? 'wsl.exe' : '/bin/bash');
     const cwd = options.cwd || process.cwd();
     const env = { ...process.env, ...options.env };
 
